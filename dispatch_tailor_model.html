@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dispatch Tailor &mdash; Multi-Line Business Model</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0d1117;--navy2:#161c26;--gold:#c9a84c;--smoke:#8b95a6;--white:#f0f2f5;--line1:#3b82f6;--line2:#10b981;--line3:#f59e0b;--line4:#8b5cf6}
+html,body{height:100%;margin:0;padding:0;background:var(--navy)}
+.pg{background:var(--navy);color:var(--white);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column}
+.hdr{background:var(--navy2);padding:32px 48px 28px;border-bottom:1px solid rgba(201,168,76,0.2);position:relative;overflow:hidden;flex-shrink:0}
+.hdr::before{content:'';position:absolute;top:0;right:0;width:300px;height:100%;background:linear-gradient(135deg,transparent 50%,rgba(201,168,76,0.04));pointer-events:none}
+.hdr-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.hdr-logo{font-family:'Playfair Display',serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+.hdr-date{font-size:11px;color:var(--smoke);letter-spacing:1px}
+.hdr h1{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;color:var(--white);letter-spacing:-0.5px;margin-bottom:6px;line-height:1.2}
+.hdr p{font-size:13px;color:var(--smoke);line-height:1.6;max-width:500px}
+.gold-line{width:40px;height:2px;background:var(--gold);margin-bottom:14px}
+.nav{display:flex;background:var(--navy);border-bottom:1px solid rgba(255,255,255,0.06);overflow-x:auto;padding:0 48px;flex-shrink:0}
+.nt{background:none;border:none;border-bottom:2px solid transparent;padding:13px 16px;cursor:pointer;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--smoke);font-family:'DM Sans',sans-serif;white-space:nowrap;transition:all 0.2s}
+.nt:hover{color:var(--white)}
+.nt.on{color:var(--gold);border-bottom:2px solid var(--gold)}
+.pane{padding:32px 48px 48px;display:none;flex:1;background:var(--navy)}
+.pane.on{display:block}
+.ey{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-weight:500}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.lc{background:var(--navy2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:20px 22px;position:relative;overflow:hidden;transition:border-color 0.2s}
+.lc:hover{border-color:rgba(201,168,76,0.3)}
+.lc-bar{position:absolute;top:0;left:0;right:0;height:3px}
+.lc .lo{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--smoke);margin-bottom:8px}
+.lc h3{font-family:'Playfair Display',serif;font-size:17px;font-weight:400;margin-bottom:6px;color:var(--white)}
+.lc p{font-size:13px;color:var(--smoke);line-height:1.6}
+.lc-tag{display:inline-block;margin-top:10px;font-size:10px;letter-spacing:1px;padding:3px 10px;border-radius:20px;background:rgba(139,92,246,0.15);color:#a78bfa;border:1px solid rgba(139,92,246,0.3)}
+.pq{background:var(--navy2);border:1px solid rgba(201,168,76,0.25);border-radius:8px;padding:22px 26px;margin-top:16px;position:relative}
+.pq::before{content:'"';position:absolute;top:-10px;left:20px;font-family:'Playfair Display',serif;font-size:60px;color:var(--gold);opacity:0.3;line-height:1}
+.pq .pl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.pq p{font-size:13px;line-height:1.8;color:var(--smoke);font-style:italic}
+.callout{background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.25);border-radius:8px;padding:16px 20px;margin-top:16px}
+.callout .cl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#a78bfa;margin-bottom:8px}
+.callout p{font-size:13px;color:var(--smoke);line-height:1.6}
+.callout strong{color:var(--white);font-weight:500}
+.met{background:var(--navy2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:16px;text-align:center}
+.met .ml{font-size:11px;color:var(--smoke);margin-bottom:8px;letter-spacing:0.5px}
+.met .mv{font-size:18px;font-weight:500;color:var(--white)}
+.met .ms{font-size:11px;color:var(--smoke);margin-top:4px}
+.tb{width:100%;border-collapse:collapse;font-size:13px}
+.tb th{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:10px 16px;text-align:left;border-bottom:1px solid rgba(255,255,255,0.08)}
+.tb td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);color:var(--smoke)}
+.tb td:first-child{font-weight:500;color:var(--white)}
+.tb tr:last-child td{border-bottom:none}
+.tb tr:hover td{background:rgba(255,255,255,0.02)}
+.tc{background:var(--navy2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;overflow:hidden}
+.tc-h{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid rgba(255,255,255,0.06)}
+.tn{font-size:14px;font-weight:500;color:var(--white)}
+.tp{font-family:'Playfair Display',serif;font-size:20px;color:var(--gold)}
+.tc-b{padding:14px 20px}
+.tc-b ul{list-style:none}
+.tc-b li{font-size:13px;color:var(--smoke);padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;gap:10px;line-height:1.45}
+.tc-b li:last-child{border-bottom:none}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;opacity:0.7}
+.fch{background:rgba(201,168,76,0.08)}
+.fl{background:var(--navy2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:20px 24px}
+.fl-t{font-size:12px;font-weight:500;color:var(--gold);margin-bottom:12px}
+.fl-r{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px}
+.fl-r:last-child{border-bottom:none;padding-top:10px}
+.fl-l{color:var(--smoke)}
+.fl-v{font-weight:500;color:var(--white)}
+.fl-v.d{color:var(--smoke);font-weight:400}
+.rc{background:var(--navy2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:18px 22px;margin-bottom:12px}
+.rc-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.rc-t{font-size:14px;font-weight:500;color:var(--white)}
+.rc-s{font-size:11px;color:var(--smoke)}
+.rc-r{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px}
+.rc-r:last-child{border-bottom:none}
+.rc-l{color:var(--smoke)}
+.rc-v{font-weight:500;color:var(--white);text-align:right;max-width:55%}
+.er{display:grid;grid-template-columns:220px 120px 1fr;gap:12px;padding:12px 16px;background:var(--navy2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;align-items:center;margin-bottom:3px;transition:border-color 0.15s}
+.er:hover{border-color:rgba(201,168,76,0.2)}
+.bdg{font-size:11px;padding:3px 10px;border-radius:20px;background:rgba(201,168,76,0.12);color:var(--gold);border:1px solid rgba(201,168,76,0.25);white-space:nowrap;display:inline-block}
+.rt{font-size:13px;font-weight:500;color:var(--white)}
+.no{font-size:11px;color:var(--smoke);margin-top:2px}
+.sub{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin:20px 0 10px;font-weight:500}
+.fm{padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-size:13px;color:var(--smoke)}
+.fm:last-child{border-bottom:none;font-weight:500;color:var(--gold);padding-top:10px}
+.tbd{background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.2);border-radius:8px;padding:14px 18px;font-size:13px;color:var(--smoke);margin-bottom:16px}
+.presale{background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.3);border-radius:8px;padding:24px;margin-bottom:16px}
+.presale-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:18px}
+.presale-title{font-family:'Playfair Display',serif;font-size:20px;color:var(--white);margin-bottom:6px}
+.presale-sub{font-size:13px;color:var(--smoke);line-height:1.6;max-width:480px}
+.presale-badge{font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:20px;background:rgba(139,92,246,0.2);color:#a78bfa;border:1px solid rgba(139,92,246,0.4);white-space:nowrap}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.st{background:var(--navy);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:16px}
+.sn{font-family:'Playfair Display',serif;font-size:26px;font-weight:400;color:#a78bfa;opacity:0.5;margin-bottom:8px}
+.st h3{font-size:13px;font-weight:500;color:var(--white);margin-bottom:4px}
+.st p{font-size:12px;color:var(--smoke);line-height:1.6}
+.vs-bar{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.vs-card{background:var(--navy);border-radius:8px;padding:16px 20px}
+.vs-card.no-inv{border:1px solid rgba(16,185,129,0.3)}
+.vs-card.with-inv{border:1px solid rgba(239,68,68,0.2)}
+.vs-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.vs-label.green{color:#10b981}
+.vs-label.red{color:#ef4444;opacity:0.7}
+.vs-item{font-size:13px;color:var(--smoke);padding:5px 0;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;gap:8px}
+.vs-item:last-child{border-bottom:none}
+.vs-check{width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:9px;font-weight:700}
+.check-g{background:rgba(16,185,129,0.2);color:#10b981}
+.check-r{background:rgba(239,68,68,0.15);color:#ef4444}
+.fn{padding:14px 48px;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;background:var(--navy2);flex-shrink:0}
+.fn span{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--smoke)}
+.na{color:rgba(255,255,255,0.2);font-style:italic}
+.split-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.split-card{background:var(--navy2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:20px 24px}
+.split-line{font-family:'Playfair Display',serif;font-size:15px;color:var(--white);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.split-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px}
+.split-row:last-child{border-bottom:none;font-weight:500}
+.split-label{color:var(--smoke)}
+.split-val{color:var(--white);font-weight:500}
+.split-val.gold{color:var(--gold)}
+</style>
+</head>
+<body>
+<div class="pg">
+<div class="hdr">
+  <div class="hdr-top">
+    <div class="hdr-logo">Dispatch Tailor</div>
+    <div class="hdr-date">March 2026 &mdash; Confidential</div>
+  </div>
+  <div class="gold-line"></div>
+  <h1>Multi-line business model</h1>
+  <p>Every line generates revenue. Every builder owns a piece. Every dispatcher earns from the whole ecosystem.</p>
+</div>
+<div class="nav">
+  <button class="nt on" onclick="sw('model',this)">The model</button>
+  <button class="nt" onclick="sw('disp',this)">Dispatcher line</button>
+  <button class="nt" onclick="sw('fin',this)">Finance line</button>
+  <button class="nt" onclick="sw('mkt',this)">Marketing line</button>
+  <button class="nt" onclick="sw('tech',this)">Tech line</button>
+  <button class="nt" onclick="sw('earn',this)">How team earns</button>
+  <button class="nt" onclick="sw('splits',this)">Profit splits</button>
+</div>
+
+<div id="model" class="pane on">
+  <div class="ey">Four lines of business</div>
+  <div class="g2" style="margin-bottom:16px">
+    <div class="lc"><div class="lc-bar" style="background:var(--line1)"></div><div class="lo">Nicole &mdash; ops lead</div><h3>Dispatchers</h3><p>Core revenue engine. Dispatchers earn base pay, upsell bonuses on increased client engagement, and subscription referral commissions across every line.</p></div>
+    <div class="lc"><div class="lc-bar" style="background:var(--line2)"></div><div class="lo">Sam &mdash; AxeFi</div><h3>Finance</h3><p>Bookkeeping and reporting for DT clients nationwide. $1,000 and $2,000/mo. AxeFi earns delivery fee. DT retains 35% margin. Nicole earns 7.5% of DT net profit.</p></div>
+    <div class="lc"><div class="lc-bar" style="background:var(--line3)"></div><div class="lo">Jenn &mdash; marketing lead</div><h3>Marketing</h3><p>Marketing services as a monthly subscription. Dispatchers earn 7.5% recurring commission on every client they sign up. Jenn holds 10% profit interest.</p></div>
+    <div class="lc"><div class="lc-bar" style="background:var(--line4)"></div><div class="lo">Ron &mdash; tech lead</div><h3>Tech</h3><p>Tech as a recurring service. Funded via pre-sold founding member subscriptions &mdash; not investors. Ron holds 10% profit interest.</p><span class="lc-tag">Subscriber-funded build</span></div>
+  </div>
+  <div class="sub">How dispatchers earn across all lines</div>
+  <div class="g4" style="margin-bottom:16px">
+    <div class="met"><div class="ml">Dispatcher line</div><div class="mv">Base + upsell</div><div class="ms">7.5% of incremental rev</div></div>
+    <div class="met"><div class="ml">Finance referral</div><div class="mv">$50 + 7.5%</div><div class="ms">One-time + % of MRR</div></div>
+    <div class="met"><div class="ml">Marketing referral</div><div class="mv">$50 + 7.5%</div><div class="ms">One-time + % of MRR</div></div>
+    <div class="met"><div class="ml">Tech referral</div><div class="mv">$50 + 7.5%</div><div class="ms">One-time + % of MRR</div></div>
+  </div>
+  <div class="callout"><div class="cl">The tech line difference</div><p>The Tech line does not require investor capital. <strong>Pre-sold founding member subscriptions fund the build.</strong> Demand is validated before a dollar is spent. The incubator becomes self-fulfilling.</p></div>
+  <div class="pq"><div class="pl">Jamie's vision</div><p>Tie everything to revenue generation and reward the team for it. Dispatchers are the distribution engine for every other line. Their commissions grow as the ecosystem grows. Once we offer subscriptions to the tech, it becomes easy to build businesses with these tools.</p></div>
+</div>
+
+<div id="disp" class="pane">
+  <div class="ey">Dispatcher line &mdash; Nicole</div>
+  <div class="g2">
+    <div>
+      <div class="sub" style="margin-top:0">How dispatchers earn</div>
+      <table class="tb">
+        <tr><th>Layer</th><th>Rate</th><th>How it works</th></tr>
+        <tr><td>Base pay</td><td>Per hour</td><td>Standard pay per completed dispatch hour</td></tr>
+        <tr><td>Upsell bonus</td><td>7.5% incremental</td><td>When dispatcher grows a client's dispatch engagement. Paid monthly while it holds.</td></tr>
+        <tr><td>Profit pool</td><td>7.5% of net profit</td><td>Shared pool quarterly, weighted by volume and tenure</td></tr>
+      </table>
+      <div class="sub">Subscription referral commissions</div>
+      <table class="tb">
+        <tr><th>Line</th><th>One-time</th><th>Recurring</th><th>Example</th></tr>
+        <tr><td>Finance</td><td>$50</td><td>7.5% MRR</td><td>$75/mo on $1,000</td></tr>
+        <tr><td>Marketing</td><td>$50</td><td>7.5% MRR</td><td>TBD</td></tr>
+        <tr><td>Tech</td><td>$50</td><td>7.5% MRR</td><td>TBD</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="sub" style="margin-top:0">Upsell bonus example</div>
+      <div class="rc" style="margin-bottom:12px">
+        <div class="rc-h"><div class="rc-t">Client engagement growth</div><div class="rc-s">7.5% of incremental amount</div></div>
+        <div class="rc-r"><div class="rc-l">Client before upsell</div><div class="rc-v">$5,000/mo</div></div>
+        <div class="rc-r"><div class="rc-l">Client after upsell</div><div class="rc-v">$7,000/mo</div></div>
+        <div class="rc-r"><div class="rc-l">Incremental revenue</div><div class="rc-v">$2,000/mo</div></div>
+        <div class="rc-r"><div class="rc-l">Dispatcher earns</div><div class="rc-v" style="color:var(--gold)">$150/mo</div></div>
+      </div>
+      <div class="sub">Profit pool</div>
+      <div class="rc" style="margin-bottom:0">
+        <div class="rc-h"><div class="rc-t">Quarterly dispatcher pool</div><div class="rc-s">7.5% of Dispatcher line net profit</div></div>
+        <div class="rc-r"><div class="rc-l">Distribution basis</div><div class="rc-v">Volume and tenure weighted</div></div>
+        <div class="rc-r"><div class="rc-l">Frequency</div><div class="rc-v">Quarterly</div></div>
+        <div class="rc-r"><div class="rc-l">Eligibility</div><div class="rc-v">All active dispatchers</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="fin" class="pane">
+  <div class="ey">Finance line &mdash; AxeFi delivery model</div>
+  <p style="font-size:13px;color:var(--smoke);margin-bottom:16px;line-height:1.7">Serving solo law firms and professional services clients nationwide. DT charges clients and retains 35% gross margin. AxeFi delivers all services and earns a flat delivery fee. Nicole earns 7.5% of DT net profit.</p>
+  <div class="g2" style="margin-bottom:16px">
+    <div>
+      <div class="sub" style="margin-top:0">Dispatcher referral fees</div>
+      <div class="rc">
+        <div class="rc-h"><div class="rc-t">Finance subscription referral</div><div class="rc-s">7.5% consistent across all lines</div></div>
+        <div class="rc-r"><div class="rc-l">One-time activation bonus</div><div class="rc-v">$50 per sign-up</div></div>
+        <div class="rc-r"><div class="rc-l">Recurring commission</div><div class="rc-v">7.5% of MRR while active</div></div>
+        <div class="rc-r"><div class="rc-l">Example at Essential</div><div class="rc-v" style="color:var(--gold)">$75/mo per referred client</div></div>
+      </div>
+      <div class="sub">AxeFi earnings at scale (50/50 mix)</div>
+      <table class="tb">
+        <tr><th>Clients</th><th>Essential ($650)</th><th>Growth ($1,300)</th><th>AxeFi MRR</th></tr>
+        <tr><td>10</td><td>$3,250</td><td>$6,500</td><td>$9,750</td></tr>
+        <tr><td>25</td><td>$8,125</td><td>$16,250</td><td>$24,375</td></tr>
+        <tr><td>50</td><td>$16,250</td><td>$32,500</td><td>$48,750</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="sub" style="margin-top:0">Money split per client</div>
+      <div class="fl" style="margin-bottom:12px">
+        <div class="fl-t">Essential &mdash; $1,000/mo</div>
+        <div class="fl-r"><div class="fl-l">Client pays DT</div><div class="fl-v">$1,000</div></div>
+        <div class="fl-r"><div class="fl-l">AxeFi delivery fee</div><div class="fl-v d">($650)</div></div>
+        <div class="fl-r"><div class="fl-l">DT gross margin</div><div class="fl-v">$350</div></div>
+        <div class="fl-r"><div class="fl-l">Dispatcher referral</div><div class="fl-v d">($75)</div></div>
+        <div class="fl-r"><div class="fl-l">DT overhead (est.)</div><div class="fl-v d">($50)</div></div>
+        <div class="fl-r"><div class="fl-l">DT net &mdash; Nicole 7.5%</div><div class="fl-v" style="color:var(--gold)">~$225 &rarr; ~$17</div></div>
+      </div>
+      <div class="fl">
+        <div class="fl-t">Growth &mdash; $2,000/mo</div>
+        <div class="fl-r"><div class="fl-l">Client pays DT</div><div class="fl-v">$2,000</div></div>
+        <div class="fl-r"><div class="fl-l">AxeFi delivery fee</div><div class="fl-v d">($1,300)</div></div>
+        <div class="fl-r"><div class="fl-l">DT gross margin</div><div class="fl-v">$700</div></div>
+        <div class="fl-r"><div class="fl-l">Dispatcher referral</div><div class="fl-v d">($150)</div></div>
+        <div class="fl-r"><div class="fl-l">DT overhead (est.)</div><div class="fl-v d">($100)</div></div>
+        <div class="fl-r"><div class="fl-l">DT net &mdash; Nicole 7.5%</div><div class="fl-v" style="color:var(--gold)">~$450 &rarr; ~$34</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="sub">Service tiers</div>
+  <div class="g2">
+    <div class="tc"><div class="tc-h"><div class="tn">Essential</div><div class="tp">$1,000/mo</div></div><div class="tc-b"><ul><li><span class="dot"></span>Monthly bookkeeping and bank reconciliations</li><li><span class="dot"></span>P&amp;L and balance sheet</li><li><span class="dot"></span>Accounts receivable tracking</li><li><span class="dot"></span>Financial statement preparation</li><li><span class="dot"></span>Email support</li></ul></div></div>
+    <div class="tc"><div class="tc-h fch"><div class="tn">Growth</div><div class="tp">$2,000/mo</div></div><div class="tc-b"><ul><li><span class="dot"></span>Everything in Essential</li><li><span class="dot"></span>Cash flow reporting</li><li><span class="dot"></span>Budget vs. actual analysis</li><li><span class="dot"></span>Monthly review call</li><li><span class="dot"></span>CFO advisory access</li></ul></div></div>
+  </div>
+</div>
+
+<div id="mkt" class="pane">
+  <div class="ey">Marketing line &mdash; Jenn</div>
+  <div class="tbd">Scope and pricing to be defined with Jenn and Jamie. Structure below applies once live.</div>
+  <div class="g2">
+    <div>
+      <div class="sub" style="margin-top:0">Dispatcher referral fees</div>
+      <div class="rc">
+        <div class="rc-h"><div class="rc-t">Marketing subscription referral</div><div class="rc-s">7.5% consistent across all lines</div></div>
+        <div class="rc-r"><div class="rc-l">One-time activation bonus</div><div class="rc-v">$50 per sign-up</div></div>
+        <div class="rc-r"><div class="rc-l">Recurring commission</div><div class="rc-v">7.5% of MRR while active</div></div>
+      </div>
+      <div class="sub">Profit distribution</div>
+      <table class="tb">
+        <tr><th>Recipient</th><th>Rate</th><th>Basis</th></tr>
+        <tr><td>Jenn profit interest</td><td>10%</td><td>Of Marketing line net profit</td></tr>
+        <tr><td>Nicole profit interest</td><td>7.5%</td><td>Of Marketing line net profit</td></tr>
+        <tr><td>Overhead to DT</td><td>10%</td><td>Of Marketing line revenue</td></tr>
+        <tr><td>DT net profit share</td><td>82.5%</td><td>Of Marketing line net profit</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="sub" style="margin-top:0">What gets defined with Jamie</div>
+      <div class="rc">
+        <div class="rc-h"><div class="rc-t">Open items</div><div class="rc-s">To confirm before launch</div></div>
+        <div class="rc-r"><div class="rc-l">Services Jenn is offering</div><div class="rc-v" style="color:var(--smoke);font-weight:400">TBD</div></div>
+        <div class="rc-r"><div class="rc-l">Monthly subscription price</div><div class="rc-v" style="color:var(--smoke);font-weight:400">TBD</div></div>
+        <div class="rc-r"><div class="rc-l">Client acquisition channel</div><div class="rc-v" style="color:var(--smoke);font-weight:400">Dispatcher referral + direct</div></div>
+        <div class="rc-r"><div class="rc-l">Jenn base compensation</div><div class="rc-v" style="color:var(--smoke);font-weight:400">TBD</div></div>
+      </div>
+      <div class="pq" style="margin-top:16px"><div class="pl">Profit structure</div><p>Once pricing is set, the 7.5% recurring dispatcher commission applies automatically. Jenn's 10% profit interest accrues from the first profitable month.</p></div>
+    </div>
+  </div>
+</div>
+
+<div id="tech" class="pane">
+  <div class="ey">Tech line &mdash; Ron</div>
+  <div class="presale">
+    <div class="presale-header">
+      <div>
+        <div class="presale-title">Subscriber-funded build</div>
+        <div class="presale-sub">The Tech line does not need investors. Pre-sold founding member subscriptions validate demand and fund development before a dollar is spent on the build.</div>
+      </div>
+      <div class="presale-badge">No investors needed</div>
+    </div>
+    <div class="steps">
+      <div class="st"><div class="sn">01</div><h3>Launch founding member tier</h3><p>Discounted rate locked for life. Buyers fund the build, not a finished product.</p></div>
+      <div class="st"><div class="sn">02</div><h3>Set a hard threshold</h3><p>Development does not start until minimum pre-sale count is hit.</p></div>
+      <div class="st"><div class="sn">03</div><h3>Ring-fence the funds</h3><p>Pre-sale revenue held in dedicated account. Released only against development invoices.</p></div>
+      <div class="st"><div class="sn">04</div><h3>Build with accountability</h3><p>Ron's 10% profit interest ties his upside to what subscribers stay for, not just what ships.</p></div>
+    </div>
+    <div class="vs-bar">
+      <div class="vs-card no-inv">
+        <div class="vs-label green">Pre-sold subscriptions</div>
+        <div class="vs-item"><span class="vs-check check-g">+</span>No equity given up</div>
+        <div class="vs-item"><span class="vs-check check-g">+</span>Demand validated before build</div>
+        <div class="vs-item"><span class="vs-check check-g">+</span>No pressure to exit</div>
+        <div class="vs-item"><span class="vs-check check-g">+</span>Customers in the room from day one</div>
+      </div>
+      <div class="vs-card with-inv">
+        <div class="vs-label red">Investor funding</div>
+        <div class="vs-item"><span class="vs-check check-r">-</span>Equity dilution</div>
+        <div class="vs-item"><span class="vs-check check-r">-</span>Build before validating demand</div>
+        <div class="vs-item"><span class="vs-check check-r">-</span>Pressure to exit or scale fast</div>
+        <div class="vs-item"><span class="vs-check check-r">-</span>Investor priorities may diverge</div>
+      </div>
+    </div>
+  </div>
+  <div class="g2">
+    <div>
+      <div class="sub" style="margin-top:0">Dispatcher referral fees</div>
+      <div class="rc">
+        <div class="rc-h"><div class="rc-t">Tech subscription referral</div><div class="rc-s">7.5% consistent across all lines</div></div>
+        <div class="rc-r"><div class="rc-l">One-time activation bonus</div><div class="rc-v">$50 per sign-up</div></div>
+        <div class="rc-r"><div class="rc-l">Recurring commission</div><div class="rc-v">7.5% of MRR while active</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="sub" style="margin-top:0">Profit distribution</div>
+      <table class="tb">
+        <tr><th>Recipient</th><th>Rate</th><th>Basis</th></tr>
+        <tr><td>Ron profit interest</td><td>10%</td><td>Of Tech line net profit</td></tr>
+        <tr><td>Nicole profit interest</td><td>7.5%</td><td>Of Tech line net profit</td></tr>
+        <tr><td>Overhead to DT</td><td>10%</td><td>Of Tech line revenue</td></tr>
+        <tr><td>DT net profit share</td><td>82.5%</td><td>Of Tech line net profit</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div id="earn" class="pane">
+  <div class="ey">How the team earns</div>
+  <div class="g2">
+    <div>
+      <div class="sub" style="margin-top:0">Dispatcher earning layers</div>
+      <div class="er"><div><div style="font-size:14px;font-weight:500;color:var(--white)">Base pay</div><div class="no">Per hour dispatched</div></div><div><span class="bdg">Dispatchers</span></div><div><span class="rt">Standard rate</span></div></div>
+      <div class="er"><div><div style="font-size:14px;font-weight:500;color:var(--white)">Upsell bonus</div><div class="no">Grows client engagement</div></div><div><span class="bdg">Dispatchers</span></div><div><span class="rt">7.5%</span> <span style="font-size:12px;color:var(--smoke)">incremental revenue</span></div></div>
+      <div class="er"><div><div style="font-size:14px;font-weight:500;color:var(--white)">Profit pool</div><div class="no">Volume + tenure weighted</div></div><div><span class="bdg">Dispatchers</span></div><div><span class="rt">7.5%</span> <span style="font-size:12px;color:var(--smoke)">Dispatcher line net profit</span></div></div>
+      <div class="sub">Line builders and Nicole</div>
+      <div class="er"><div><div style="font-size:14px;font-weight:500;color:var(--white)">Delivery fee</div><div class="no">Per Finance client served</div></div><div><span class="bdg">AxeFi</span></div><div><span class="rt">$650 / $1,300</span></div></div>
+      <div class="er"><div><div style="font-size:14px;font-weight:500;color:var(--white)">Profit interest</div><div class="no">Paid quarterly</div></div><div><span class="bdg">Jenn / Ron</span></div><div><span class="rt">10%</span> <span style="font-size:12px;color:var(--smoke)">of their line's net profit</span></div></div>
+      <div class="er"><div><div style="font-size:14px;font-weight:500;color:var(--white)">Profit interest</div><div class="no">All lines, every quarter</div></div><div><span class="bdg">Nicole</span></div><div><span class="rt">7.5%</span> <span style="font-size:12px;color:var(--smoke)">per line net profit</span></div></div>
+    </div>
+    <div>
+      <div class="sub" style="margin-top:0">Subscription referral commissions</div>
+      <table class="tb">
+        <tr><th>Line</th><th>One-time</th><th>Recurring</th><th>Example</th></tr>
+        <tr><td>Finance</td><td>$50</td><td>7.5% MRR</td><td>$75/mo on $1,000</td></tr>
+        <tr><td>Marketing</td><td>$50</td><td>7.5% MRR</td><td>TBD</td></tr>
+        <tr><td>Tech</td><td>$50</td><td>7.5% MRR</td><td>TBD</td></tr>
+      </table>
+      <div class="pq" style="margin-top:16px"><div class="pl">The flywheel</div><p>Dispatchers grow the core business and earn from it. Every referral to Finance, Marketing, or Tech pays 7.5% recurring. Every client engagement they grow pays a bonus. Every action that grows revenue rewards the dispatcher who drove it.</p></div>
+    </div>
+  </div>
+</div>
+
+<div id="splits" class="pane">
+  <div class="ey">Net profit distribution per line</div>
+  <div class="split-grid">
+    <div class="split-card">
+      <div class="split-line" style="border-top:3px solid var(--line1);padding-top:10px">Dispatchers</div>
+      <div class="split-row"><div class="split-label">Nicole</div><div class="split-val">7.5%</div></div>
+      <div class="split-row"><div class="split-label">Dispatcher pool</div><div class="split-val">7.5%</div></div>
+      <div class="split-row"><div class="split-label">Builder</div><div class="split-val na">n/a</div></div>
+      <div class="split-row"><div class="split-label">DT</div><div class="split-val gold">85%</div></div>
+    </div>
+    <div class="split-card">
+      <div class="split-line" style="border-top:3px solid var(--line2);padding-top:10px">Finance</div>
+      <div class="split-row"><div class="split-label">Nicole</div><div class="split-val">7.5%</div></div>
+      <div class="split-row"><div class="split-label">Dispatcher pool</div><div class="split-val na">n/a</div></div>
+      <div class="split-row"><div class="split-label">AxeFi</div><div class="split-val">Delivery fee*</div></div>
+      <div class="split-row"><div class="split-label">DT</div><div class="split-val gold">92.5%</div></div>
+    </div>
+    <div class="split-card">
+      <div class="split-line" style="border-top:3px solid var(--line3);padding-top:10px">Marketing</div>
+      <div class="split-row"><div class="split-label">Nicole</div><div class="split-val">7.5%</div></div>
+      <div class="split-row"><div class="split-label">Dispatcher pool</div><div class="split-val na">n/a</div></div>
+      <div class="split-row"><div class="split-label">Jenn</div><div class="split-val">10%</div></div>
+      <div class="split-row"><div class="split-label">DT</div><div class="split-val gold">82.5%</div></div>
+    </div>
+    <div class="split-card">
+      <div class="split-line" style="border-top:3px solid var(--line4);padding-top:10px">Tech</div>
+      <div class="split-row"><div class="split-label">Nicole</div><div class="split-val">7.5%</div></div>
+      <div class="split-row"><div class="split-label">Dispatcher pool</div><div class="split-val na">n/a</div></div>
+      <div class="split-row"><div class="split-label">Ron</div><div class="split-val">10%</div></div>
+      <div class="split-row"><div class="split-label">DT</div><div class="split-val gold">82.5%</div></div>
+    </div>
+  </div>
+  <div style="font-size:11px;color:var(--smoke);margin:12px 0 20px;line-height:1.6">* AxeFi earns $650/$1,300 delivery fee per client deducted before net profit. DT overhead (10% of revenue) deducted across all lines before net profit split.</div>
+  <div class="sub">Net profit formula &mdash; all lines</div>
+  <div style="background:var(--navy2);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:18px 24px">
+    <div class="fm">Line revenue</div>
+    <div class="fm">- Cost of revenue (direct labor, tools)</div>
+    <div class="fm">= Gross profit</div>
+    <div class="fm">- Dispatcher referral commissions (7.5% of MRR referred)</div>
+    <div class="fm">- Dispatcher upsell bonuses (7.5% of incremental revenue)</div>
+    <div class="fm">- Operating expenses (direct)</div>
+    <div class="fm">- Overhead allocation (10% of revenue to DT)</div>
+    <div class="fm">= Net profit &mdash; distributed per split above</div>
+  </div>
+</div>
+
+<div class="fn">
+  <span>Dispatch Tailor &mdash; Confidential</span>
+  <span>Prepared by AxeFi &mdash; March 2026</span>
+</div>
+</div>
+<script>
+function sw(id,el){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nt').forEach(t=>t.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  el.classList.add('on');
+}
+</script>
+</body>
+</html>
